@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {tap} from "rxjs/operators";
 import {getListTodo} from "./state/todos.actions";
+import {LoadingStatus, TodosState} from "./state/todos.reducer";
 
 @Component({
   selector: 'app-welcome',
@@ -19,11 +20,15 @@ export class WelcomeComponent implements OnInit {
     { id: 4, title: 'Demo Ngrx 4', status: 'Done' },
   ];
 
-  todos$: Observable<Todo[]> = this.store.select((state) => state.todos).pipe(
-    tap(console.log)
+  todos$: Observable<Todo[]> = this.store.select((state) => state.todos.list).pipe(
+    tap(console.log),
   );
 
-  constructor(private store: Store<{ todos: Todo[] }>) { }
+  loadingTodosStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingListStatus).pipe(
+    tap(console.log),
+);
+
+  constructor(private store: Store<{ todos: TodosState }>) { }
 
   ngOnInit() {
     this.store.dispatch(getListTodo());

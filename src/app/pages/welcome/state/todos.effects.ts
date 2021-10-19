@@ -14,7 +14,6 @@ export class TodosEffects {
     ofType(getListTodo),
     mergeMap(() => this.todoService.getAll()
       .pipe(
-        startWith([]),
         map((todos) => listTodoLoaded({ todos })),
         catchError(() => EMPTY)
       ))

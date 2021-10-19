@@ -8,7 +8,8 @@
     <div nz-col [nzSpan]="8">
       <nz-card nzTitle="All todos">
         <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
-          <app-todo-mini-list [todos]="todos$ | async"></app-todo-mini-list>
+          <!-- @todo xử lý case error -->
+          <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="todos$ | async"></app-todo-mini-list>
         </cdk-virtual-scroll-viewport>
       </nz-card>
     </div>
@@ -29,3 +30,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #skeletonList>
+  <nz-skeleton [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+  <nz-skeleton [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+  <nz-skeleton [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+</ng-template>
