@@ -10,11 +10,17 @@ import {NzListModule} from "ng-zorro-antd/list";
 import {NzTypographyModule} from "ng-zorro-antd/typography";
 import {CommonModule} from "@angular/common";
 import { TodoFilterPipe } from './pipes/todo-filter.pipe';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule],
-  declarations: [WelcomeComponent, TodoMiniListComponent, TodoFilterPipe],
+  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzSelectModule, NzButtonModule],
+  declarations: [WelcomeComponent, TodoMiniListComponent, TodoFilterPipe, TodoFormComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }
