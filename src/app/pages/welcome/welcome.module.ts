@@ -16,10 +16,11 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzSelectModule, NzButtonModule],
+  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzSelectModule, NzButtonModule, ScrollingModule],
   declarations: [WelcomeComponent, TodoMiniListComponent, TodoFilterPipe, TodoFormComponent],
   exports: [WelcomeComponent]
 })

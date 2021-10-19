@@ -9,7 +9,7 @@ import {Todo} from "../../todo";
 })
 export class TodoMiniListComponent implements OnInit {
 
-  @Input() todos: Todo[] = [];
+  @Input() todos: Todo[] | null = [];
 
   constructor() { }
 
