@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Todo} from "../../todo";
 
 @Component({
   selector: 'app-todo-form',
@@ -9,8 +10,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class TodoFormComponent implements OnInit {
 
   form!: FormGroup;
+  @Output() onSubmit: EventEmitter<Todo> = new EventEmitter<Todo>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private readonly fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -33,6 +35,10 @@ export class TodoFormComponent implements OnInit {
 
     if (this.form.invalid) { return; }
 
-    console.log(this.form.value)
+    this.onSubmit.emit(this.form.value);
+  }
+
+  resetForm() {
+    this.form.reset();
   }
 }

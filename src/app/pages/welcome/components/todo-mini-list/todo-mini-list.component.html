@@ -1,6 +1,12 @@
 <nz-list style="padding-right: 24px;">
-  <nz-list-item *ngFor="let todo of todos">
-    <span nz-typography [ngStyle]="{'text-decoration': todo.status === 'Done' ? 'line-through' : ''}">{{ todo.title }}</span>
-    <span [ngStyle]="{'color': todo.status === 'Done' ? 'green' : (todo.status === 'Pending' ? 'blue' : 'red')}">{{ todo.status }}</span>
-  </nz-list-item>
+  <ng-container *ngIf="todos?.length; else empty">
+    <nz-list-item *ngFor="let todo of todos">
+      <span nz-typography [ngStyle]="{'text-decoration': todo.status === 'Done' ? 'line-through' : ''}">{{ todo.title }}</span>
+      <span [ngStyle]="{'color': todo.status === 'Done' ? 'green' : (todo.status === 'Pending' ? 'blue' : 'red')}">{{ todo.status }}</span>
+    </nz-list-item>
+  </ng-container>
 </nz-list>
+
+<ng-template #empty>
+  <nz-empty></nz-empty>
+</ng-template>

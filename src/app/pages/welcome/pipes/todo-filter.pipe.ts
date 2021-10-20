@@ -6,7 +6,8 @@ import {Status, Todo} from "../todo";
 })
 export class TodoFilterPipe implements PipeTransform {
 
-  transform(todos: Todo[], status: Status): Todo[] {
+  transform(todos: Todo[] | null, status: Status): Todo[] {
+    if (!todos) return [];
     return todos.filter(todo => todo.status === status);
   }
 
