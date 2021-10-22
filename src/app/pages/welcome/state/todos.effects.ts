@@ -23,7 +23,8 @@ export class TodosEffects {
   createTodo$ = createEffect(() => this.action$.pipe(
     ofType(createTodo),
     tap(_ => console.log('create todo: ', _)),
-    mergeMap((action) => this.todoService.create(action.todo)
+    map(action => action.todo),
+    mergeMap((todo) => this.todoService.create(todo)
       .pipe(
         map(todo => getListTodo()),
         catchError(() => EMPTY)

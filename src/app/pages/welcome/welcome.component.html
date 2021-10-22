@@ -2,7 +2,7 @@
   <div nz-row [nzGutter]="8">
     <div nz-col [nzSpan]="16">
       <nz-card nzTitle="Add todo">
-        <app-todo-form (onSubmit)="createTodo($event)"></app-todo-form>
+        <app-todo-form (onSubmit)="createTodo($event)" [loadingSubmitFormStatus]="loadingSubmitFormStatus$ | async"></app-todo-form>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8">

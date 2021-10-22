@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Todo} from "../../todo";
+import {LoadingStatus} from "../../state/todos.reducer";
 
 @Component({
   selector: 'app-todo-form',
@@ -11,6 +12,7 @@ export class TodoFormComponent implements OnInit {
 
   form!: FormGroup;
   @Output() onSubmit: EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Input() loadingSubmitFormStatus: LoadingStatus | null = 'idle';
 
   constructor(private readonly fb: FormBuilder) { }
 

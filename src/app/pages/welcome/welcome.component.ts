@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Todo} from "./todo";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -14,10 +14,10 @@ import {LoadingStatus, TodosState} from "./state/todos.reducer";
 export class WelcomeComponent implements OnInit {
 
   todos: Todo[] = [
-    { id: 1, title: 'Demo Ngrx 1', status: 'Processing' },
-    { id: 2, title: 'Demo Ngrx 2', status: 'Done' },
-    { id: 3, title: 'Demo Ngrx 3', status: 'Pending' },
-    { id: 4, title: 'Demo Ngrx 4', status: 'Done' },
+    {id: 1, title: 'Demo Ngrx 1', status: 'Processing'},
+    {id: 2, title: 'Demo Ngrx 2', status: 'Done'},
+    {id: 3, title: 'Demo Ngrx 3', status: 'Pending'},
+    {id: 4, title: 'Demo Ngrx 4', status: 'Done'},
   ];
 
   todos$: Observable<Todo[]> = this.store.select((state) => state.todos.list).pipe(
@@ -26,15 +26,20 @@ export class WelcomeComponent implements OnInit {
 
   loadingTodosStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingListStatus).pipe(
     tap(console.log),
-);
+  );
 
-  constructor(private store: Store<{ todos: TodosState }>) { }
+  loadingSubmitFormStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingSubmitFormStatus).pipe(
+    tap(console.log),
+  );
+
+  constructor(private store: Store<{ todos: TodosState }>) {
+  }
 
   ngOnInit() {
     this.store.dispatch(getListTodo());
   }
 
   createTodo(todo: Todo) {
-    this.store.dispatch(createTodo({ todo }));
+    this.store.dispatch(createTodo({todo}));
   }
 }
