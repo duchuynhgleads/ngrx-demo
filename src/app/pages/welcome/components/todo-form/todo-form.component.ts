@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Todo} from "../../todo";
 import {LoadingStatus} from "../../state/todos.reducer";
@@ -8,7 +8,7 @@ import {LoadingStatus} from "../../state/todos.reducer";
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent implements OnInit, OnChanges {
 
   form!: FormGroup;
   @Output() onSubmit: EventEmitter<Todo> = new EventEmitter<Todo>();
@@ -18,6 +18,12 @@ export class TodoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes && changes?.loadingSubmitFormStatus.previousValue === 'loading' && changes?.loadingSubmitFormStatus.currentValue === 'idle') {
+      this.resetForm();
+    }
   }
 
   initForm(): void {
@@ -41,6 +47,9 @@ export class TodoFormComponent implements OnInit {
   }
 
   resetForm() {
-    this.form.reset();
+    this.form.patchValue({
+      title: '',
+      status: 'Pending'
+    });
   }
 }

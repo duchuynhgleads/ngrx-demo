@@ -20,17 +20,11 @@ export class WelcomeComponent implements OnInit {
     {id: 4, title: 'Demo Ngrx 4', status: 'Done'},
   ];
 
-  todos$: Observable<Todo[]> = this.store.select((state) => state.todos.list).pipe(
-    tap(console.log),
-  );
+  todos$: Observable<Todo[]> = this.store.select((state) => state.todos.list);
 
-  loadingTodosStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingListStatus).pipe(
-    tap(console.log),
-  );
+  loadingTodosStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingListStatus);
 
-  loadingSubmitFormStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingSubmitFormStatus).pipe(
-    tap(console.log),
-  );
+  loadingSubmitFormStatus$: Observable<LoadingStatus> = this.store.select((state) => state.todos.loadingSubmitFormStatus);
 
   constructor(private store: Store<{ todos: TodosState }>) {
   }
