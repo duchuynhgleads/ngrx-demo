@@ -14,7 +14,7 @@ export class TodoService {
   constructor(private readonly httpClient: HttpClient) { }
 
   getAll(): Observable<Todo[]> {
-    return this.httpClient.get<Todo[]>(this.endpoint + '?sortBy=id&order=desc');
+    return this.httpClient.get<Todo[]>(this.endpoint + '?sortBy=createdAt&order=desc');
   }
 
   create(params: Todo): Observable<Todo> {
