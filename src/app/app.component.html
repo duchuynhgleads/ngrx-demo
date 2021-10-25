@@ -36,6 +36,18 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
         </span>
+
+        <span class="header-right">
+          <nz-badge [nzCount]="((todos$ | async) | todoFilter: 'Pending')?.length">
+                <i nz-icon nzType="bell" nzTheme="outline" style="font-size: 1rem"></i>
+          </nz-badge>
+          <nz-badge [nzStyle]="{ backgroundColor: '#2db7f5' }" [nzCount]="((todos$ | async) | todoFilter: 'Processing')?.length">
+                <i nz-icon nzType="bell" nzTheme="outline" style="font-size: 1rem"></i>
+          </nz-badge>
+          <nz-badge [nzStyle]="{ backgroundColor: '#52c41a' }" [nzCount]="((todos$ | async) | todoFilter: 'Done')?.length">
+                <i nz-icon nzType="bell" nzTheme="outline" style="font-size: 1rem"></i>
+          </nz-badge>
+        </span>
       </div>
     </nz-header>
     <nz-content>

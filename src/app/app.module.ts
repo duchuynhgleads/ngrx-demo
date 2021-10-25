@@ -19,6 +19,8 @@ import {todosReducer} from "./pages/welcome/state/todos.reducer";
 import {TodosEffects} from "./pages/welcome/state/todos.effects";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import {NzBadgeModule} from "ng-zorro-antd/badge";
+import {TodoFilterModule} from "./core/pipes/todo-filter/todo-filter.module";
 
 registerLocaleData(en);
 
@@ -26,19 +28,21 @@ registerLocaleData(en);
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({ todos: todosReducer }, {}),
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    EffectsModule.forRoot([TodosEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        StoreModule.forRoot({todos: todosReducer}, {}),
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        IconsProviderModule,
+        NzLayoutModule,
+        NzMenuModule,
+        EffectsModule.forRoot([TodosEffects]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        NzBadgeModule,
+        TodoFilterModule
+    ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
