@@ -20,10 +20,13 @@ import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {NzEmptyModule} from "ng-zorro-antd/empty";
 import {NzSpinModule} from "ng-zorro-antd/spin";
 import {TodoFilterModule} from "../../core/pipes/todo-filter/todo-filter.module";
+import {IconsProviderModule} from "../../icons-provider.module";
+import {NzPopoverModule} from "ng-zorro-antd/popover";
+import {SpinCircleModule} from "../../core/components/spin-circle/spin-circle.module";
 
 
 @NgModule({
-  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzSelectModule, NzButtonModule, ScrollingModule, NzSkeletonModule, NzEmptyModule, NzSpinModule, TodoFilterModule],
+  imports: [WelcomeRoutingModule, NzGridModule, NzCardModule, NzListModule, NzTypographyModule, CommonModule, NzFormModule, NzInputModule, ReactiveFormsModule, NzSelectModule, NzButtonModule, ScrollingModule, NzSkeletonModule, NzEmptyModule, NzSpinModule, TodoFilterModule, IconsProviderModule, NzPopoverModule, SpinCircleModule],
   declarations: [WelcomeComponent, TodoMiniListComponent, TodoFormComponent],
   exports: [WelcomeComponent]
 })

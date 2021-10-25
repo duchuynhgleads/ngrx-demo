@@ -1,8 +1,30 @@
 <nz-list style="padding-right: 24px;">
   <ng-container *ngIf="todos?.length; else empty">
     <nz-list-item *ngFor="let todo of todos">
-      <span nz-typography [ngStyle]="{'text-decoration': todo.status === 'Done' ? 'line-through' : ''}">{{ todo.title }}</span>
-      <span [ngStyle]="{'color': todo.status === 'Done' ? 'green' : (todo.status === 'Pending' ? 'blue' : 'red')}">{{ todo.status }}</span>
+      <span nz-typography
+            [ngStyle]="{'text-decoration': todo.status === 'Done' ? 'line-through' : ''}">{{ todo.title }}</span>
+      <span
+        [ngStyle]="{'color': todo.status === 'Done' ? '#52c41a' : (todo.status === 'Pending' ? 'red' : '#2db7f5')}">{{ todo.status }}
+
+        <i nz-icon
+           nzType="delivered-procedure"
+           nzTheme="outline"
+           *ngIf="todo.status === 'Pending'"
+           style="cursor: pointer; color: #2db7f5"
+           nz-popover
+           nzPopoverContent="Mark as Processing"
+           (click)="updateTodo(todo, { status: 'Processing' })"></i>
+        <i nz-icon
+           nzType="check"
+           nzTheme="outline"
+           *ngIf="todo.status === 'Processing'"
+           style="cursor: pointer; color: #52c41a"
+           nz-popover
+           nzPopoverContent="Mark as Done"
+           (click)="updateTodo(todo, { status: 'Done' })"></i>
+        <app-spin-circle *ngIf="(updating$ | async) && updatingTodo?.id === todo.id"></app-spin-circle>
+      </span>
+
     </nz-list-item>
   </ng-container>
 </nz-list>

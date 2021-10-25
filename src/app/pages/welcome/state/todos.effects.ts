@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {TodoService} from "../../../core/api/todo.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {createTodo, getListTodo, listTodoLoaded, todoCreated} from "./todos.actions";
+import {createTodo, getListTodo, listTodoLoaded, todoCreated, todoUpdated, updateTodo} from "./todos.actions";
 import {catchError, map, mergeMap, startWith, switchMap, tap} from "rxjs/operators";
 import {EMPTY} from "rxjs";
 
@@ -27,6 +27,20 @@ export class TodosEffects {
     switchMap(() => [
       getListTodo(),
       todoCreated()
+    ]),
+    catchError(err => {
+      console.log(err);
+      return EMPTY;
+    })
+  ));
+
+  updateTodo$ = createEffect(() => this.action$.pipe(
+    ofType(updateTodo),
+    map(action => action.todo),
+    switchMap((todo) => this.todoService.update(todo.id as number, todo)),
+    switchMap(() => [
+      getListTodo(),
+      todoUpdated()
     ]),
     catchError(err => {
       console.log(err);

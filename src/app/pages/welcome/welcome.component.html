@@ -9,28 +9,28 @@
       <nz-card nzTitle="All todos">
         <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
           <!-- @todo xử lý case error -->
-          <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="todos$ | async"></app-todo-mini-list>
-        </cdk-virtual-scroll-viewport>
-      </nz-card>
-    </div>
-    <div nz-col [nzSpan]="8">
-      <nz-card nzTitle="Processing todos">
-        <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
-        <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Processing'"></app-todo-mini-list>
-        </cdk-virtual-scroll-viewport>
-      </nz-card>
-    </div>
-    <div nz-col [nzSpan]="8">
-      <nz-card nzTitle="Done todos">
-        <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
-        <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Done'"></app-todo-mini-list>
+          <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="todos$ | async" (onUpdateTodo)="onUpdateTodo($event)"></app-todo-mini-list>
         </cdk-virtual-scroll-viewport>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8">
       <nz-card nzTitle="Pending todos">
         <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
-        <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Pending'"></app-todo-mini-list>
+          <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Pending'" (onUpdateTodo)="onUpdateTodo($event)"></app-todo-mini-list>
+        </cdk-virtual-scroll-viewport>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Processing todos">
+        <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
+        <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Processing'"  (onUpdateTodo)="onUpdateTodo($event)"></app-todo-mini-list>
+        </cdk-virtual-scroll-viewport>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Done todos">
+        <cdk-virtual-scroll-viewport itemSize="73" style="height: 200px">
+        <app-todo-mini-list *ngIf="(loadingTodosStatus$ | async) === 'idle'; else skeletonList" [todos]="(todos$ | async) | todoFilter: 'Done'"  (onUpdateTodo)="onUpdateTodo($event)"></app-todo-mini-list>
         </cdk-virtual-scroll-viewport>
       </nz-card>
     </div>

@@ -3,7 +3,7 @@ import {Todo} from "./todo";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {tap} from "rxjs/operators";
-import {createTodo, getListTodo} from "./state/todos.actions";
+import {createTodo, getListTodo, updateTodo} from "./state/todos.actions";
 import {LoadingStatus, TodosState} from "./state/todos.reducer";
 
 @Component({
@@ -28,5 +28,9 @@ export class WelcomeComponent implements OnInit {
 
   createTodo(todo: Todo) {
     this.store.dispatch(createTodo({todo}));
+  }
+
+  onUpdateTodo(todo: Todo) {
+    this.store.dispatch(updateTodo({todo}));
   }
 }

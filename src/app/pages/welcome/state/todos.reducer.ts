@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {Todo} from "../todo";
-import {createTodo, getListTodo, listTodoLoaded, todoCreated} from "./todos.actions";
+import {createTodo, getListTodo, listTodoLoaded, todoCreated, updateTodo} from "./todos.actions";
 
 export type LoadingStatus = 'idle' | 'loading' | 'error';
 
@@ -29,5 +29,5 @@ export const todosReducer = createReducer(
   }),
   on(todoCreated, (state) => {
     return { ...state, loadingSubmitFormStatus: 'idle'}
-  }),
+  })
 )

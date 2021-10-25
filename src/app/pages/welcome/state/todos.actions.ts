@@ -10,6 +10,15 @@ export const todoCreated = createAction(
   '[Todo] Todo Created'
 );
 
+export const updateTodo = createAction(
+  '[Todo] Update Todo',
+  props<{ todo: Todo }>()
+);
+
+export const todoUpdated = createAction(
+  '[Todo] Todo Updated'
+);
+
 export const getListTodo = createAction(
   '[Todo] Get List Todo'
 )
